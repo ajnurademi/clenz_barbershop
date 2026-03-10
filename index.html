@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Clenz – Premium One-Page-Produktwebseite mit modernen Pflegeprodukten."
+    />
+    <title>Clenz | Premium Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" id="siteHeader">
+      <div class="container header-inner">
+        <a class="logo" href="#hero" aria-label="Clenz Startseite">
+          <span class="logo-drop"></span>
+          <span>Clenz</span>
+        </a>
+        <nav class="nav" aria-label="Hauptnavigation">
+          <a href="#produkte">Produkte</a>
+          <a href="#about">Über uns</a>
+          <a href="#cta" class="nav-cta">Kontakt / CTA</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="container hero-content fade-in-up">
+          <p class="eyebrow">Premium Care • Modern DTC</p>
+          <h1>Clenz bringt Reinheit in modernes Produktdesign.</h1>
+          <p class="hero-text">
+            Hochwertige Essentials für deine tägliche Routine – clean, minimal und
+            kompromisslos in Qualität.
+          </p>
+          <a class="btn btn-primary" href="#produkte">Produkte entdecken</a>
+        </div>
+      </section>
+
+      <section class="products section slide-up" id="produkte">
+        <div class="container">
+          <div class="section-head fade-in-up">
+            <p class="eyebrow">Produktlinie</p>
+            <h2>Vier Produkte. Ein Premium-Anspruch.</h2>
+          </div>
+
+          <div class="product-grid" id="productGrid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="about section" id="about">
+        <div class="container narrow fade-in-up">
+          <p class="eyebrow">Über Clenz</p>
+          <h2>Qualität, die man sieht. Design, das man fühlt.</h2>
+          <p>
+            Clenz steht für minimalistische Produkte mit maximaler Wirkung. Unsere
+            Formulierungen und Materialien werden mit Fokus auf Performance,
+            Langlebigkeit und Ästhetik ausgewählt.
+          </p>
+        </div>
+      </section>
+
+      <section class="cta section" id="cta">
+        <div class="container cta-box fade-in-up">
+          <h2>Bereit für ein Upgrade deiner Routine?</h2>
+          <p>Jetzt im Partner-Shop entdecken und direkt bestellen.</p>
+          <a class="btn btn-primary" href="https://example.com/shop" target="_blank" rel="noopener">
+            Jetzt kaufen
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Clenz</strong>
+          <p>Premium Care, reduziert auf das Wesentliche.</p>
+        </div>
+        <nav aria-label="Footer Navigation">
+          <a href="#produkte">Produkte</a>
+          <a href="#about">Über uns</a>
+          <a href="#cta">Kontakt</a>
+        </nav>
+        <p class="footer-note">
+          Der Verkauf sowie der Versand erfolgen über einen externen
+          Partner-Shop.
+        </p>
+      </div>
+    </footer>
+
+    <div class="modal" id="productModal" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal-backdrop" data-close-modal></div>
+      <div class="modal-content">
+        <button class="modal-close" type="button" aria-label="Popup schließen" data-close-modal>
+          ×
+        </button>
+        <div class="modal-grid">
+          <div class="modal-images" id="modalImages"></div>
+          <div class="modal-copy">
+            <p class="eyebrow" id="modalTag">Clenz Produkt</p>
+            <h3 id="modalTitle"></h3>
+            <p id="modalDescription"></p>
+            <p class="price" id="modalPrice"></p>
+            <a class="btn btn-primary" id="modalBuy" href="https://example.com/shop" target="_blank" rel="noopener">
+              Jetzt kaufen
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
