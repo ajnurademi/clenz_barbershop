@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Impressum von Clenz." />
+    <title>Clenz | Impressum</title>
+    <script>
+      (() => {
+        const storedTheme = localStorage.getItem("clenz-theme");
+        const preferredTheme =
+          storedTheme || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        document.documentElement.setAttribute("data-theme", preferredTheme);
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="legal-page">
+      <div class="container legal-shell">
+        <header class="legal-header">
+          <a class="logo" href="index.html" aria-label="Zur Startseite">
+            <img class="brand-mark" src="img/logo.svg" alt="Clenz" />
+          </a>
+          <a class="legal-back" href="index.html">Zurück zur Startseite</a>
+        </header>
+
+        <article class="legal-card-page">
+          <p class="eyebrow">Rechtliches</p>
+          <h1>Impressum</h1>
+          <p>
+            Dieser Entwurf ist eine Vorlage und ersetzt keine rechtliche Beratung.
+            Die Platzhalter muessen vor der Veröffentlichung mit den echten Unternehmensdaten ersetzt werden.
+          </p>
+
+          <section class="legal-section">
+            <h2>Angaben gemaess § 5 TMG</h2>
+            <p>
+              Clenz / [Firmenname]<br />
+              [Rechtsform, falls vorhanden]<br />
+              [Strasse und Hausnummer]<br />
+              [PLZ, Ort]<br />
+              [Land]
+            </p>
+          </section>
+
+          <section class="legal-section">
+            <h2>Vertreten durch</h2>
+            <p>[Vorname Nachname der verantwortlichen Person / Geschaeftsfuehrung]</p>
+          </section>
+
+          <section class="legal-section">
+            <h2>Kontakt</h2>
+            <p>
+              Telefon: [Telefonnummer]<br />
+              E-Mail: [E-Mail-Adresse]
+            </p>
+          </section>
+
+          <section class="legal-section">
+            <h2>Registereintrag</h2>
+            <p>
+              Eintragung im Handelsregister.<br />
+              Registergericht: [zustaendiges Gericht]<br />
+              Registernummer: [Nummer]
+            </p>
+          </section>
+
+          <section class="legal-section">
+            <h2>Umsatzsteuer-ID</h2>
+            <p>
+              Umsatzsteuer-Identifikationsnummer gemaess § 27 a Umsatzsteuergesetz:<br />
+              [USt-IdNr.]
+            </p>
+          </section>
+
+          <section class="legal-section">
+            <h2>Inhaltlich verantwortlich</h2>
+            <p>
+              [Vorname Nachname]<br />
+              [Anschrift, falls abweichend]
+            </p>
+          </section>
+
+          <section class="legal-section">
+            <h2>Haftung fuer Inhalte</h2>
+            <p>
+              Trotz sorgfaeltiger inhaltlicher Kontrolle übernehmen wir keine Gewaehr fuer die
+              Aktualitaet, Vollstaendigkeit und Richtigkeit der bereitgestellten Inhalte.
+              Gesetzliche Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen
+              nach den allgemeinen Gesetzen bleiben hiervon unberuehrt.
+            </p>
+          </section>
+
+          <section class="legal-section">
+            <h2>Haftung fuer Links</h2>
+            <p>
+              Unser Angebot kann Links zu externen Websites Dritter enthalten, auf deren Inhalte wir
+              keinen Einfluss haben. Deshalb koennen wir fuer diese fremden Inhalte auch keine Gewaehr übernehmen.
+              Fuer die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.
+            </p>
+          </section>
+
+          <section class="legal-section">
+            <h2>Urheberrecht</h2>
+            <p>
+              Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem Urheberrecht.
+              Beitraege Dritter sind als solche gekennzeichnet. Die Vervielfaeltigung, Bearbeitung, Verbreitung und jede
+              Art der Verwertung ausserhalb der Grenzen des Urheberrechts beduerfen der schriftlichen Zustimmung des
+              jeweiligen Autors bzw. Erstellers.
+            </p>
+          </section>
+
+          <div class="legal-placeholder">
+            Vor dem Livegang sollten Firmenname, Anschrift, vertretungsberechtigte Person, Kontakt,
+            Registerdaten und USt-ID vollstaendig und korrekt eingetragen werden.
+          </div>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>

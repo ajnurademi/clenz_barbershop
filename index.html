@@ -5,9 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Clenz – Premium One-Page-Produktwebseite mit modernen Pflegeprodukten."
+      content="Clenz - Premium One-Page-Produktwebseite mit modernen Pflegeprodukten."
     />
     <title>Clenz | Premium Care</title>
+    <script>
+      (() => {
+        const storedTheme = localStorage.getItem("clenz-theme");
+        const preferredTheme =
+          storedTheme || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        document.documentElement.setAttribute("data-theme", preferredTheme);
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,36 +28,95 @@
     <header class="site-header" id="siteHeader">
       <div class="container header-inner">
         <a class="logo" href="#hero" aria-label="Clenz Startseite">
-          <span class="logo-drop"></span>
-          <span>Clenz</span>
+          <img class="brand-mark" src="img/logo.svg" alt="Clenz" />
         </a>
-        <nav class="nav" aria-label="Hauptnavigation">
-          <a href="#produkte">Produkte</a>
-          <a href="#about">Über uns</a>
-          <a href="#cta" class="nav-cta">Kontakt / CTA</a>
-        </nav>
+        <div class="header-actions">
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Menue oeffnen"
+            aria-expanded="false"
+            aria-controls="siteNav"
+          >
+            <span class="menu-toggle-line"></span>
+            <span class="menu-toggle-line"></span>
+            <span class="menu-toggle-line"></span>
+          </button>
+          <nav class="nav" id="siteNav" aria-label="Hauptnavigation">
+            <a href="#produkte">Produkte</a>
+            <a href="#about">Über uns</a>
+            <a href="#cta" class="nav-mobile-cta">Jetzt kaufen</a>
+          </nav>
+          <div class="header-utility">
+            <a href="#cta" class="header-buy-btn">Jetzt kaufen</a>
+            <button
+              class="theme-toggle"
+              id="themeToggle"
+              type="button"
+              aria-label="Theme wechseln"
+              aria-pressed="false"
+            >
+              <span class="theme-toggle-drop" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="presentation" focusable="false">
+                  <path
+                    d="M12 2.5C12 2.5 6 9.38 6 13.5C6 17.09 8.91 20 12.5 20C16.09 20 19 17.09 19 13.5C19 9.38 12 2.5 12 2.5Z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
     </header>
 
     <main>
       <section class="hero" id="hero">
         <div class="hero-bg" aria-hidden="true"></div>
-        <div class="container hero-content fade-in-up">
-          <p class="eyebrow">Premium Care • Modern DTC</p>
-          <h1>Clenz bringt Reinheit in modernes Produktdesign.</h1>
-          <p class="hero-text">
-            Hochwertige Essentials für deine tägliche Routine – clean, minimal und
-            kompromisslos in Qualität.
-          </p>
-          <a class="btn btn-primary" href="#produkte">Produkte entdecken</a>
+        <div class="hero-brand-layer" aria-hidden="true">
+          <img class="hero-brand-watermark" src="img/logo.svg" alt="" />
+        </div>
+        <div class="hero-grid container">
+          <div class="hero-copy fade-in-up">
+            <span class="hero-kicker">Fuer Studios, Shops und moderne Routinen</span>
+            <h1>Clenz macht Hygiene <span>sichtbar modern</span></h1>
+            <p class="hero-text">
+              Clenz verbindet saubere Produkte mit einer klaren visuellen Sprache.
+              Reduziert im Look, praezise in der Wirkung und gemacht fuer einen Auftritt
+              zwischen Cleanliness, Premium-Branding und echtem Studio-Feeling.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#produkte">Produkte entdecken</a>
+              <a class="btn hero-secondary-btn" href="#about">Warum Clenz</a>
+            </div>
+            <div class="hero-callout fade-in-up">
+              <strong>Fuer Barbershops, Salons und Stores mit Anspruch.</strong>
+              <span>Minimal im Design. Stark im ersten Eindruck.</span>
+            </div>
+          </div>
         </div>
       </section>
 
       <section class="products section slide-up" id="produkte">
+        <div class="products-atmosphere" aria-hidden="true">
+          <span class="products-drop products-drop-one"></span>
+          <span class="products-drop products-drop-two"></span>
+          <span class="products-glow products-glow-one"></span>
+          <span class="products-glow products-glow-two"></span>
+        </div>
         <div class="container">
           <div class="section-head fade-in-up">
             <p class="eyebrow">Produktlinie</p>
             <h2>Vier Produkte. Ein Premium-Anspruch.</h2>
+            <p class="section-lead">
+              Entwickelt fuer einen sauberen Auftritt im Studio, im Shop und in jeder
+              modernen Routine. Klar im Look, direkt in der Wirkung.
+            </p>
+            <div class="products-meta" aria-label="Clenz Produktvorteile">
+              <span>Sofort verstaendlich</span>
+              <span>Starker erster Eindruck</span>
+              <span>Clean Packaging</span>
+            </div>
           </div>
 
           <div class="product-grid" id="productGrid" aria-live="polite"></div>
@@ -57,62 +124,187 @@
       </section>
 
       <section class="about section" id="about">
-        <div class="container narrow fade-in-up">
-          <p class="eyebrow">Über Clenz</p>
-          <h2>Qualität, die man sieht. Design, das man fühlt.</h2>
-          <p>
-            Clenz steht für minimalistische Produkte mit maximaler Wirkung. Unsere
-            Formulierungen und Materialien werden mit Fokus auf Performance,
-            Langlebigkeit und Ästhetik ausgewählt.
-          </p>
+        <div class="container about-layout">
+          <div class="about-copy fade-in-up">
+            <p class="eyebrow">Über Clenz</p>
+            <h2>Saubere Produkte, klares Design und ein Auftritt, der Vertrauen schafft.</h2>
+            <p class="about-lead">
+              Clenz verbindet hygienische Essentials mit einem reduzierten, modernen
+              Markenbild. Der Fokus liegt auf Produkten, die im Alltag direkt
+              funktionieren und dabei hochwertig wirken.
+            </p>
+
+            <div class="about-points">
+              <article class="about-point fade-in-up">
+                <span class="about-point-number">01</span>
+                <div>
+                  <h3>Direkt verstaendlich</h3>
+                  <p>Klare Produkte, klare Anwendung und ein Look, der sofort professionell wirkt.</p>
+                </div>
+              </article>
+              <article class="about-point fade-in-up">
+                <span class="about-point-number">02</span>
+                <div>
+                  <h3>Fuer den taeglichen Einsatz</h3>
+                  <p>Gemacht fuer Studios, Barbershops und Routinen, in denen Hygiene sichtbar sein soll.</p>
+                </div>
+              </article>
+              <article class="about-point fade-in-up">
+                <span class="about-point-number">03</span>
+                <div>
+                  <h3>Marke mit Wiedererkennung</h3>
+                  <p>Reduziertes Design, starke Formensprache und ein Auftritt, der modern und sauber bleibt.</p>
+                </div>
+              </article>
+            </div>
+
+            <div class="about-stats fade-in-up" aria-label="Clenz Vorteile">
+              <div class="about-stat">
+                <strong>4</strong>
+                <span>Kernprodukte fuer die Linie</span>
+              </div>
+              <div class="about-stat">
+                <strong>100%</strong>
+                <span>fokussiert auf sauberen Auftritt</span>
+              </div>
+              <div class="about-stat">
+                <strong>24/7</strong>
+                <span>einsetzbar in jeder Routine</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-visual fade-in-up">
+            <div class="about-drops" aria-hidden="true">
+              <span class="about-drop about-drop-one"></span>
+              <span class="about-drop about-drop-two"></span>
+              <span class="about-drop about-drop-three"></span>
+            </div>
+
+            <div class="about-frame">
+              <div class="about-image-placeholder">
+                <p class="about-placeholder-label">Visual Placeholder</p>
+                <h3>Platz fuer Produktbild oder Brand-Shot</h3>
+                <p>
+                  Hier kann spaeter ein starkes Studiofoto, Packaging-Mockup oder
+                  eine Anwendungsszene eingesetzt werden.
+                </p>
+              </div>
+
+              <div class="about-note">
+                <span class="about-note-dot"></span>
+                <p>
+                  Warum Clenz? Weil Hygiene, Design und Klarheit zusammen staerker
+                  wirken als nur ein Produktfoto.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <section class="cta section" id="cta">
         <div class="container cta-box fade-in-up">
-          <h2>Bereit für ein Upgrade deiner Routine?</h2>
-          <p>Jetzt im Partner-Shop entdecken und direkt bestellen.</p>
-          <a class="btn btn-primary" href="https://example.com/shop" target="_blank" rel="noopener">
-            Jetzt kaufen
-          </a>
+          <div class="cta-atmosphere" aria-hidden="true">
+            <span class="cta-drop cta-drop-one"></span>
+            <span class="cta-drop cta-drop-two"></span>
+            <span class="cta-ring"></span>
+          </div>
+          <div class="cta-copy">
+            <p class="cta-eyebrow">Final Call</p>
+            <h2>Bereit fuer ein Upgrade deiner Routine?</h2>
+            <p class="cta-text">Jetzt im Partner-Shop entdecken und direkt bestellen.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="cta-button" href="https://example.com/shop" target="_blank" rel="noopener">
+              <span class="cta-button-drop" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="presentation" focusable="false">
+                  <path
+                    d="M12 2.5C12 2.5 6 9.38 6 13.5C6 17.09 8.91 20 12.5 20C16.09 20 19 17.09 19 13.5C19 9.38 12 2.5 12 2.5Z"
+                  />
+                </svg>
+              </span>
+              <span>Jetzt kaufen</span>
+            </a>
+            <p class="cta-note">Schnell. Klar. Direkt zur Produktlinie.</p>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <div>
-          <strong>Clenz</strong>
-          <p>Premium Care, reduziert auf das Wesentliche.</p>
+        <div class="footer-brand">
+          <img class="brand-mark" src="img/logo.svg" alt="Clenz" />
+          <p>Premium Care, reduziert auf das Wesentliche und gemacht fuer einen modernen, sauberen Markenauftritt.</p>
         </div>
-        <nav aria-label="Footer Navigation">
-          <a href="#produkte">Produkte</a>
-          <a href="#about">Über uns</a>
-          <a href="#cta">Kontakt</a>
-        </nav>
-        <p class="footer-note">
-          Der Verkauf sowie der Versand erfolgen über einen externen
-          Partner-Shop.
-        </p>
+        <div class="footer-column">
+          <h3>Schnellzugriff</h3>
+          <nav class="footer-nav" aria-label="Footer Navigation">
+            <a href="#hero">Start</a>
+            <a href="#produkte">Produkte</a>
+            <a href="#about">Über uns</a>
+            <a href="#cta">Jetzt kaufen</a>
+          </nav>
+        </div>
+        <div class="footer-column">
+          <h3>Rechtliches</h3>
+          <nav class="footer-nav" aria-label="Rechtliche Hinweise">
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+          </nav>
+        </div>
+        <div class="footer-cta">
+          <p class="footer-cta-eyebrow">Bereit fuer Clenz</p>
+          <h3>Bring saubere Produkte in einen starken Auftritt.</h3>
+          <p>
+            Entdecke die Linie und fuehre Besucher direkt zu den Produkten oder zum
+            Kaufbereich.
+          </p>
+          <a class="btn btn-primary footer-cta-btn" href="#cta">Jetzt kaufen</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>© 2026 Clenz. Alle Rechte vorbehalten.</p>
       </div>
     </footer>
 
     <div class="modal" id="productModal" aria-hidden="true" role="dialog" aria-modal="true">
       <div class="modal-backdrop" data-close-modal></div>
       <div class="modal-content">
-        <button class="modal-close" type="button" aria-label="Popup schließen" data-close-modal>
-          ×
-        </button>
-        <div class="modal-grid">
-          <div class="modal-images" id="modalImages"></div>
-          <div class="modal-copy">
-            <p class="eyebrow" id="modalTag">Clenz Produkt</p>
-            <h3 id="modalTitle"></h3>
-            <p id="modalDescription"></p>
-            <p class="price" id="modalPrice"></p>
-            <a class="btn btn-primary" id="modalBuy" href="https://example.com/shop" target="_blank" rel="noopener">
-              Jetzt kaufen
-            </a>
+        <div class="modal-atmosphere" aria-hidden="true">
+          <span class="modal-drop modal-drop-one"></span>
+          <span class="modal-drop modal-drop-two"></span>
+          <span class="modal-drop modal-drop-three"></span>
+        </div>
+        <div class="modal-scroll">
+          <button class="modal-close" type="button" aria-label="Popup schliessen" data-close-modal>
+            &times;
+          </button>
+          <div class="modal-grid">
+            <div class="modal-gallery">
+              <div class="modal-stage">
+                <button class="modal-nav modal-nav-prev" type="button" id="modalPrev" aria-label="Vorheriges Bild">
+                  &#8249;
+                </button>
+                <div class="modal-main-frame">
+                  <img class="modal-main-image" id="modalMainImage" src="" alt="" />
+                </div>
+                <button class="modal-nav modal-nav-next" type="button" id="modalNext" aria-label="Naechstes Bild">
+                  &#8250;
+                </button>
+              </div>
+              <div class="modal-thumbs" id="modalThumbs" aria-label="Produktbilder"></div>
+            </div>
+            <div class="modal-copy">
+              <p class="eyebrow modal-tag" id="modalTag">Clenz Produkt</p>
+              <h3 id="modalTitle"></h3>
+              <p id="modalDescription"></p>
+              <p class="price" id="modalPrice"></p>
+              <a class="btn btn-primary modal-buy" id="modalBuy" href="https://example.com/shop" target="_blank" rel="noopener">
+                Jetzt kaufen
+              </a>
+            </div>
           </div>
         </div>
       </div>

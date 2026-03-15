@@ -1,4 +1,4 @@
-// Produktdaten: Die verlinkten Bilder können hier zentral gepflegt werden.
+/*  */// Produktdaten: Die verlinkten Bilder koennen hier zentral gepflegt werden.
 const products = [
   {
     id: "clarity-cleanser",
@@ -8,25 +8,17 @@ const products = [
       "Der Clarity Cleanser entfernt Rückstände und verleiht ein klares, weiches Finish. Entwickelt für die tägliche Anwendung mit ausgewogener Pflegeleistung.",
     price: "29,90 €",
     buyUrl: "https://example.com/shop/clarity-cleanser",
-    images: [
-      "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=1200&q=80",
-    ],
+    images: ["img/desinfektionsspray.png"],
   },
   {
     id: "deep-hydration",
     title: "Deep Hydration Serum",
     short: "Intensive Hydration mit leichtem, cleanem Finish.",
     description:
-      "Ein hochkonzentriertes Serum für langanhaltende Feuchtigkeit und ein sichtbar ausgeglichenes Hautbild – ohne zu beschweren.",
+      "Ein hochkonzentriertes Serum für langanhaltende Feuchtigkeit und ein sichtbar ausgeglichenes Hautbild, ohne zu beschweren.",
     price: "39,90 €",
     buyUrl: "https://example.com/shop/deep-hydration",
-    images: [
-      "https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1631730486787-ecf1f4e2eec2?auto=format&fit=crop&w=1200&q=80",
-    ],
+    images: ["img/desinfektionsseife.png"],
   },
   {
     id: "repair-cream",
@@ -36,37 +28,127 @@ const products = [
       "Die Repair Cream unterstützt die Hautbarriere und sorgt für ein geschmeidiges, gepflegtes Ergebnis mit minimalistischem Duftprofil.",
     price: "34,90 €",
     buyUrl: "https://example.com/shop/repair-cream",
-    images: [
-      "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1570554886111-e80fcca6a029?auto=format&fit=crop&w=1200&q=80",
-    ],
+    images: ["img/desinfektionstuecher.png"],
   },
   {
     id: "daily-spf",
     title: "Daily SPF Shield",
     short: "Leichter UV-Schutz mit modernem Skin-Feel.",
     description:
-      "Daily SPF Shield bietet verlässlichen Schutz und ein natürliches Finish – perfekt als letzter Schritt deiner morgendlichen Routine.",
+      "Daily SPF Shield bietet verlässlichen Schutz und ein natürliches Finish, perfekt als letzter Schritt deiner morgendlichen Routine.",
     price: "32,90 €",
     buyUrl: "https://example.com/shop/daily-spf",
-    images: [
-      "https://images.unsplash.com/photo-1629198735660-e39ea93f5d8f?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80",
-    ],
+    images: ["img/desinfektionsspray_cllipper.png"],
   },
 ];
 
 const grid = document.getElementById("productGrid");
 const modal = document.getElementById("productModal");
+const modalTag = document.getElementById("modalTag");
 const modalTitle = document.getElementById("modalTitle");
 const modalDescription = document.getElementById("modalDescription");
 const modalPrice = document.getElementById("modalPrice");
 const modalBuy = document.getElementById("modalBuy");
-const modalImages = document.getElementById("modalImages");
+const modalMainImage = document.getElementById("modalMainImage");
+const modalThumbs = document.getElementById("modalThumbs");
+const modalPrev = document.getElementById("modalPrev");
+const modalNext = document.getElementById("modalNext");
+const modalClose = modal.querySelector(".modal-close");
 const siteHeader = document.getElementById("siteHeader");
 const productSection = document.getElementById("produkte");
+const themeToggle = document.getElementById("themeToggle");
+const menuToggle = document.getElementById("menuToggle");
+const siteNav = document.getElementById("siteNav");
+
+const THEME_STORAGE_KEY = "clenz-theme";
+
+let activeProduct = null;
+let activeGallery = [];
+let activeImageIndex = 0;
+
+function getPreferredTheme() {
+  const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+
+  if (storedTheme === "light" || storedTheme === "dark") {
+    return storedTheme;
+  }
+
+  return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+
+  if (!themeToggle) {
+    return;
+  }
+
+  const isLight = theme === "light";
+  themeToggle.setAttribute("aria-pressed", String(isLight));
+  themeToggle.setAttribute("aria-label", isLight ? "Zu Dark Mode wechseln" : "Zu Light Mode wechseln");
+}
+
+function setupThemeToggle() {
+  const initialTheme = getPreferredTheme();
+  applyTheme(initialTheme);
+
+  if (!themeToggle) {
+    return;
+  }
+
+  themeToggle.addEventListener("click", () => {
+    const nextTheme = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+    localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    applyTheme(nextTheme);
+  });
+}
+
+function setMenuState(isOpen) {
+  if (!menuToggle || !siteNav) {
+    return;
+  }
+
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute("aria-label", isOpen ? "Menue schliessen" : "Menue oeffnen");
+  siteNav.classList.toggle("is-open", isOpen);
+}
+
+function setupMenuToggle() {
+  if (!menuToggle || !siteNav) {
+    return;
+  }
+
+  setMenuState(false);
+
+  menuToggle.addEventListener("click", () => {
+    const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+    setMenuState(!isOpen);
+  });
+
+  siteNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth <= 680) {
+        setMenuState(false);
+      }
+    });
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 680) {
+      setMenuState(false);
+    }
+  });
+}
+
+function buildGalleryImages(images) {
+  const safeImages = images.filter(Boolean);
+
+  if (!safeImages.length) {
+    return [];
+  }
+
+  return Array.from({ length: Math.max(4, safeImages.length) }, (_, index) => safeImages[index % safeImages.length]);
+}
 
 function renderProducts() {
   const cards = products
@@ -84,57 +166,161 @@ function renderProducts() {
   grid.innerHTML = cards;
 }
 
+function renderModalGallery() {
+  if (!activeProduct || !activeGallery.length) {
+    return;
+  }
+
+  const activeImage = activeGallery[activeImageIndex];
+
+  modalMainImage.src = activeImage;
+  modalMainImage.alt = `${activeProduct.title} Detail ${activeImageIndex + 1}`;
+  modalMainImage.classList.remove("is-animating");
+  void modalMainImage.offsetWidth;
+  modalMainImage.classList.add("is-animating");
+
+  modalThumbs.innerHTML = activeGallery
+    .map(
+      (image, index) => `
+        <button
+          class="modal-thumb ${index === activeImageIndex ? "is-active" : ""}"
+          type="button"
+          data-image-index="${index}"
+          aria-label="Bild ${index + 1} anzeigen"
+          aria-pressed="${index === activeImageIndex}"
+        >
+          <img src="${image}" alt="${activeProduct.title} Thumbnail ${index + 1}" loading="lazy" />
+        </button>
+      `
+    )
+    .join("");
+}
+
+function updateActiveImage(index) {
+  if (!activeGallery.length) {
+    return;
+  }
+
+  activeImageIndex = (index + activeGallery.length) % activeGallery.length;
+  renderModalGallery();
+}
+
+function shiftGallery(direction) {
+  updateActiveImage(activeImageIndex + direction);
+}
+
 function openModal(product) {
+  activeProduct = product;
+  activeGallery = buildGalleryImages(product.images);
+  activeImageIndex = 0;
+
+  modalTag.textContent = "Clenz Essentials";
   modalTitle.textContent = product.title;
   modalDescription.textContent = product.description;
   modalPrice.textContent = product.price;
   modalBuy.href = product.buyUrl;
 
-  modalImages.innerHTML = product.images
-    .map((img, index) => `<img src="${img}" alt="${product.title} Detail ${index + 1}" loading="lazy" />`)
-    .join("");
+  renderModalGallery();
 
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
+
+  if (modalClose) {
+    modalClose.focus();
+  }
 }
 
 function closeModal() {
   modal.classList.remove("is-open");
   modal.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
+
+  activeProduct = null;
+  activeGallery = [];
+  activeImageIndex = 0;
+
+  modalMainImage.removeAttribute("src");
+  modalMainImage.removeAttribute("alt");
+  modalThumbs.innerHTML = "";
 }
 
 function setupInteractions() {
   grid.addEventListener("click", (event) => {
     const card = event.target.closest(".product-card");
-    if (!card) return;
+
+    if (!card) {
+      return;
+    }
 
     const product = products.find((item) => item.id === card.dataset.productId);
-    if (product) openModal(product);
+
+    if (product) {
+      openModal(product);
+    }
   });
 
   grid.addEventListener("keydown", (event) => {
-    if (event.key !== "Enter" && event.key !== " ") return;
+    if (event.key !== "Enter" && event.key !== " ") {
+      return;
+    }
+
     const card = event.target.closest(".product-card");
-    if (!card) return;
+
+    if (!card) {
+      return;
+    }
 
     event.preventDefault();
+
     const product = products.find((item) => item.id === card.dataset.productId);
-    if (product) openModal(product);
+
+    if (product) {
+      openModal(product);
+    }
   });
 
   modal.addEventListener("click", (event) => {
-    if (event.target.hasAttribute("data-close-modal")) closeModal();
+    if (event.target.hasAttribute("data-close-modal")) {
+      closeModal();
+      return;
+    }
+
+    const thumb = event.target.closest(".modal-thumb");
+
+    if (thumb) {
+      updateActiveImage(Number(thumb.dataset.imageIndex));
+    }
   });
 
+  modalPrev.addEventListener("click", () => shiftGallery(-1));
+  modalNext.addEventListener("click", () => shiftGallery(1));
+
   window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+    if (event.key === "Escape" && menuToggle?.getAttribute("aria-expanded") === "true") {
+      setMenuState(false);
+    }
+
+    if (!modal.classList.contains("is-open")) {
+      return;
+    }
+
+    if (event.key === "Escape") {
+      closeModal();
+      return;
+    }
+
+    if (event.key === "ArrowLeft") {
+      shiftGallery(-1);
+    }
+
+    if (event.key === "ArrowRight") {
+      shiftGallery(1);
+    }
   });
 }
 
 function setupScrollEffects() {
-  // Header-Blur beim Scrollen
   window.addEventListener(
     "scroll",
     () => {
@@ -143,7 +329,6 @@ function setupScrollEffects() {
     { passive: true }
   );
 
-  // Intersection Observer für Reveal-Animationen
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -156,9 +341,8 @@ function setupScrollEffects() {
     { threshold: 0.16 }
   );
 
-  document.querySelectorAll(".fade-in-up").forEach((el) => revealObserver.observe(el));
+  document.querySelectorAll(".fade-in-up").forEach((element) => revealObserver.observe(element));
 
-  // Observer für die "Hero -> Produkte sliden" Transition
   const slideObserver = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
@@ -175,5 +359,7 @@ function setupScrollEffects() {
 }
 
 renderProducts();
+setupThemeToggle();
+setupMenuToggle();
 setupInteractions();
 setupScrollEffects();
