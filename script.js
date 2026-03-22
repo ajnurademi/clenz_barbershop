@@ -1,43 +1,39 @@
 /*  */// Produktdaten: Die verlinkten Bilder koennen hier zentral gepflegt werden.
 const products = [
   {
-    id: "clarity-cleanser",
-    title: "Clarity Cleanser",
-    short: "Sanfte Tiefenreinigung für ein frisches Hautgefühl.",
-    description:
-      "Der Clarity Cleanser entfernt Rückstände und verleiht ein klares, weiches Finish. Entwickelt für die tägliche Anwendung mit ausgewogener Pflegeleistung.",
+    id: "clenz-surface",
+    title: "Clenz Surface",
+    short: "Fuer saubere Arbeitsflaechen",
+    description: "Fuer saubere Arbeitsflaechen.",
     price: "29,90 €",
-    buyUrl: "https://example.com/shop/clarity-cleanser",
+    buyUrl: "https://www.heroshygiene.ch/",
     images: ["img/desinfektionsspray.png"],
   },
   {
-    id: "deep-hydration",
-    title: "Deep Hydration Serum",
-    short: "Intensive Hydration mit leichtem, cleanem Finish.",
-    description:
-      "Ein hochkonzentriertes Serum für langanhaltende Feuchtigkeit und ein sichtbar ausgeglichenes Hautbild, ohne zu beschweren.",
+    id: "clenz-hands",
+    title: "Clenz Hands",
+    short: "Fuer zuverlaessige Handhygiene",
+    description: "Fuer zuverlaessige Handhygiene.",
     price: "39,90 €",
-    buyUrl: "https://example.com/shop/deep-hydration",
+    buyUrl: "https://www.heroshygiene.ch/",
     images: ["img/desinfektionsseife.png"],
   },
   {
-    id: "repair-cream",
-    title: "Repair Cream",
-    short: "Regenerierende Pflege für Tag und Nacht.",
-    description:
-      "Die Repair Cream unterstützt die Hautbarriere und sorgt für ein geschmeidiges, gepflegtes Ergebnis mit minimalistischem Duftprofil.",
+    id: "clenz-wipes",
+    title: "Clenz Wipes",
+    short: "Fuer schnelle Reinigung",
+    description: "Fuer schnelle Reinigung.",
     price: "34,90 €",
-    buyUrl: "https://example.com/shop/repair-cream",
+    buyUrl: "https://www.heroshygiene.ch/",
     images: ["img/desinfektionstuecher.png"],
   },
   {
-    id: "daily-spf",
-    title: "Daily SPF Shield",
-    short: "Leichter UV-Schutz mit modernem Skin-Feel.",
-    description:
-      "Daily SPF Shield bietet verlässlichen Schutz und ein natürliches Finish, perfekt als letzter Schritt deiner morgendlichen Routine.",
+    id: "clenz-blade",
+    title: "Clenz Blade",
+    short: "Fuer Pflege und Desinfektion von Werkzeugen",
+    description: "Fuer Pflege und Desinfektion von Werkzeugen.",
     price: "32,90 €",
-    buyUrl: "https://example.com/shop/daily-spf",
+    buyUrl: "https://www.heroshygiene.ch/",
     images: ["img/desinfektionsspray_cllipper.png"],
   },
 ];
@@ -363,3 +359,4 @@ setupThemeToggle();
 setupMenuToggle();
 setupInteractions();
 setupScrollEffects();
+
