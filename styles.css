@@ -391,8 +391,15 @@ h2 {
 }
 
 .hero {
-  min-height: 94vh;
+  --hero-scroll-progress: 0;
+  min-height: 225vh;
   position: relative;
+}
+
+.hero-stage {
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
   overflow: clip;
   display: flex;
   align-items: center;
@@ -411,10 +418,153 @@ h2 {
   animation: floatDrops 16s ease-in-out infinite alternate;
 }
 
-.hero-brand-layer {
+.hero-rain {
   position: absolute;
   inset: 0;
   z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-raindrop {
+  position: absolute;
+  top: -12%;
+  width: clamp(12px, 1vw, 18px);
+  height: clamp(22px, 2.4vw, 38px);
+  background:
+    radial-gradient(circle at 38% 24%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.36) 16%, transparent 18%),
+    linear-gradient(180deg, rgba(245, 251, 247, 0.96), rgba(223, 239, 228, 0.54) 52%, rgba(119, 177, 128, 0.12));
+  -webkit-mask-image: url("img/regentropfen.svg");
+  mask-image: url("img/regentropfen.svg");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  box-shadow: 0 0 10px rgba(219, 240, 224, 0.04);
+  opacity: 0.24;
+  filter: blur(0.15px);
+  transform: translate3d(0, 0, 0) rotate(7deg);
+}
+
+.hero-raindrop::after {
+  content: "";
+  position: absolute;
+  top: 17%;
+  left: 37%;
+  width: 14%;
+  height: 18%;
+  border-radius: 999px;
+  transform: rotate(10deg);
+  background: rgba(255, 255, 255, 0.62);
+  filter: blur(0.5px);
+}
+
+html[data-theme="light"] .hero-raindrop {
+  background:
+    radial-gradient(circle at 38% 24%, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.4) 16%, transparent 18%),
+    linear-gradient(180deg, rgba(12, 22, 16, 0.98), rgba(28, 49, 35, 0.78) 52%, rgba(60, 104, 70, 0.28));
+  box-shadow:
+    0 0 12px rgba(22, 38, 27, 0.16),
+    inset 0 0 0 0.8px rgba(255, 255, 255, 0.18);
+  opacity: 0.42;
+}
+
+html[data-theme="light"] .hero-raindrop::after {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.hero-raindrop-left-1 {
+  left: 6%;
+  width: clamp(16px, 1.35vw, 24px);
+  height: clamp(30px, 3.4vw, 48px);
+  animation: heroRainFall 10.8s linear infinite;
+}
+
+.hero-raindrop-left-2 {
+  left: 12%;
+  width: clamp(11px, 0.92vw, 16px);
+  height: clamp(20px, 2.1vw, 32px);
+  opacity: 0.22;
+  animation: heroRainFall 8.6s linear infinite 1.4s;
+}
+
+.hero-raindrop-left-3 {
+  left: 18%;
+  width: clamp(7px, 0.58vw, 10px);
+  height: clamp(12px, 1.2vw, 18px);
+  opacity: 0.16;
+  animation: heroRainFall 12.2s linear infinite 3.2s;
+}
+
+.hero-raindrop-left-4 {
+  left: 24%;
+  width: clamp(5px, 0.42vw, 8px);
+  height: clamp(10px, 0.9vw, 14px);
+  opacity: 0.12;
+  animation: heroRainFall 9.2s linear infinite 5.6s;
+}
+
+.hero-raindrop-right-1 {
+  right: 7%;
+  width: clamp(15px, 1.25vw, 23px);
+  height: clamp(28px, 3.1vw, 46px);
+  animation: heroRainFall 11.4s linear infinite 0.8s;
+}
+
+.hero-raindrop-center-1 {
+  left: 41%;
+  width: clamp(9px, 0.76vw, 14px);
+  height: clamp(16px, 1.8vw, 28px);
+  opacity: 0.12;
+  animation: heroRainFall 10.2s linear infinite 2.4s;
+}
+
+.hero-raindrop-center-2 {
+  left: 51%;
+  width: clamp(6px, 0.5vw, 9px);
+  height: clamp(11px, 1vw, 16px);
+  opacity: 0.09;
+  animation: heroRainFall 12.8s linear infinite 5.4s;
+}
+
+.hero-raindrop-center-3 {
+  left: 58%;
+  width: clamp(8px, 0.66vw, 12px);
+  height: clamp(14px, 1.4vw, 22px);
+  opacity: 0.1;
+  animation: heroRainFall 9.6s linear infinite 1.2s;
+}
+
+.hero-raindrop-right-2 {
+  right: 13%;
+  width: clamp(12px, 1vw, 17px);
+  height: clamp(22px, 2.3vw, 34px);
+  opacity: 0.22;
+  animation: heroRainFall 8.8s linear infinite 4.2s;
+}
+
+.hero-raindrop-right-3 {
+  right: 19%;
+  width: clamp(7px, 0.58vw, 10px);
+  height: clamp(12px, 1.2vw, 18px);
+  opacity: 0.16;
+  animation: heroRainFall 12.6s linear infinite 2.1s;
+}
+
+.hero-raindrop-right-4 {
+  right: 25%;
+  width: clamp(5px, 0.42vw, 8px);
+  height: clamp(10px, 0.9vw, 14px);
+  opacity: 0.12;
+  animation: heroRainFall 9.8s linear infinite 6.2s;
+}
+
+.hero-brand-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -422,9 +572,25 @@ h2 {
   position: absolute;
   left: 50%;
   top: 48%;
-  width: min(92vw, 1320px);
-  transform: translate(-50%, -50%);
-  opacity: 0.07;
+  width: min(94vw, 1360px);
+  transition: opacity 260ms ease, transform 260ms ease, filter 260ms ease;
+}
+
+.hero-brand-watermark-front {
+  transform: translate(-50%, calc(-50% - (var(--hero-scroll-progress) * 1.8rem)))
+    scale(calc(1.04 - (var(--hero-scroll-progress) * 0.12)));
+  opacity: calc(1 - (var(--hero-scroll-progress) * 1.08));
+  filter: brightness(0) invert(1) drop-shadow(0 24px 60px rgba(255, 255, 255, 0.12));
+}
+
+html[data-theme="light"] .hero-brand-watermark-front {
+  filter: brightness(0) drop-shadow(0 18px 42px rgba(17, 31, 22, 0.1));
+}
+
+.hero-brand-watermark-back {
+  transform: translate(-50%, calc(-50% + (var(--hero-scroll-progress) * 1rem)))
+    scale(calc(0.9 + (var(--hero-scroll-progress) * 0.08)));
+  opacity: calc(var(--hero-scroll-progress) * 0.16);
   filter: var(--logo-filter);
 }
 
@@ -437,9 +603,26 @@ h2 {
   }
 }
 
+@keyframes heroRainFall {
+  0% {
+    transform: translate3d(0, -8vh, 0) rotate(7deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.18;
+  }
+  80% {
+    opacity: 0.12;
+  }
+  100% {
+    transform: translate3d(10px, 118vh, 0) rotate(9deg);
+    opacity: 0;
+  }
+}
+
 .hero-grid {
   position: relative;
-  z-index: 2;
+  z-index: 4;
   display: flex;
   justify-content: center;
   width: min(1580px, 98vw);
@@ -449,6 +632,11 @@ h2 {
 .hero-copy {
   max-width: 1240px;
   text-align: center;
+  transform: translateY(calc(58px - (var(--hero-scroll-progress) * 58px)))
+    scale(calc(0.88 + (var(--hero-scroll-progress) * 0.12)));
+  opacity: calc(var(--hero-scroll-progress) * 1.08);
+  filter: blur(calc((1 - var(--hero-scroll-progress)) * 10px));
+  transition: opacity 220ms ease, transform 220ms ease, filter 220ms ease;
 }
 
 .hero-kicker {
@@ -490,6 +678,9 @@ h2 {
   justify-content: center;
   gap: 0.9rem;
   margin-top: 2rem;
+  opacity: max(0, calc((var(--hero-scroll-progress) - 0.38) * 2.2));
+  transform: translateY(calc(28px - (min(var(--hero-scroll-progress), 1) * 28px)));
+  transition: opacity 220ms ease, transform 220ms ease;
 }
 
 .hero-secondary-btn {
@@ -542,7 +733,7 @@ html[data-theme="light"] .hero-secondary-btn:hover {
   border-top-right-radius: 2rem;
   border-top: 1px solid rgba(168, 204, 176, 0.08);
   box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.22);
-  margin-top: -70px;
+  margin-top: -12vh;
   position: relative;
   z-index: 4;
   overflow: clip;
@@ -1799,7 +1990,10 @@ html[data-theme="light"] .about-note {
   }
 
   .hero {
-    min-height: auto;
+    min-height: 205vh;
+  }
+
+  .hero-stage {
     padding: 5.8rem 0 4.5rem;
   }
 
@@ -1947,8 +2141,11 @@ html[data-theme="light"] .about-note {
   }
 
   .hero {
-    align-items: flex-start;
-    min-height: auto;
+    min-height: 195vh;
+  }
+
+  .hero-stage {
+    align-items: center;
     padding: 7.4rem 0 7.2rem;
   }
 
@@ -1963,10 +2160,25 @@ html[data-theme="light"] .about-note {
   }
 
   .hero-brand-watermark {
-    width: min(160vw, 980px);
-    top: 34%;
+    width: min(86vw, 540px);
+    top: 38%;
     left: 50%;
-    opacity: 0.06;
+  }
+
+  .hero-raindrop-left-4,
+  .hero-raindrop-right-4,
+  .hero-raindrop-left-3,
+  .hero-raindrop-right-3 {
+    display: none;
+  }
+
+  .hero-raindrop-center-2,
+  .hero-raindrop-center-3 {
+    display: none;
+  }
+
+  .hero-raindrop {
+    opacity: 0.16;
   }
 
   .hero-copy h1 {
@@ -2068,7 +2280,7 @@ html[data-theme="light"] .about-note {
   }
 
   .products {
-    margin-top: -8px;
+    margin-top: -8vh;
     padding-top: 1rem;
   }
 
@@ -2196,13 +2408,26 @@ html[data-theme="light"] .about-note {
 
 @media (max-width: 520px) {
   .hero {
+    min-height: 188vh;
+  }
+
+  .hero-stage {
     padding: 6.3rem 0 6.6rem;
   }
 
   .hero-brand-watermark {
-    width: min(188vw, 880px);
-    top: 30%;
+    width: min(78vw, 460px);
+    top: 39%;
     left: 50%;
+  }
+
+  .hero-raindrop-left-2,
+  .hero-raindrop-right-2 {
+    display: none;
+  }
+
+  .hero-raindrop-center-1 {
+    display: none;
   }
 
   .hero-copy h1 {

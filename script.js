@@ -51,6 +51,7 @@ const modalPrev = document.getElementById("modalPrev");
 const modalNext = document.getElementById("modalNext");
 const modalClose = modal.querySelector(".modal-close");
 const siteHeader = document.getElementById("siteHeader");
+const heroSection = document.getElementById("hero");
 const productSection = document.getElementById("produkte");
 const themeToggle = document.getElementById("themeToggle");
 const menuToggle = document.getElementById("menuToggle");
@@ -317,13 +318,25 @@ function setupInteractions() {
 }
 
 function setupScrollEffects() {
+  const updateScrollState = () => {
+    siteHeader.classList.toggle("scrolled", window.scrollY > 8);
+
+    if (heroSection) {
+      const heroRect = heroSection.getBoundingClientRect();
+      const scrollRange = Math.max(heroSection.offsetHeight - window.innerHeight, 1);
+      const rawProgress = Math.min(Math.max(-heroRect.top / scrollRange, 0), 1);
+      const progress = Math.min(rawProgress / 0.68, 1);
+      heroSection.style.setProperty("--hero-scroll-progress", progress.toFixed(3));
+    }
+  };
+
   window.addEventListener(
     "scroll",
-    () => {
-      siteHeader.classList.toggle("scrolled", window.scrollY > 8);
-    },
+    updateScrollState,
     { passive: true }
   );
+
+  updateScrollState();
 
   const revealObserver = new IntersectionObserver(
     (entries) => {
