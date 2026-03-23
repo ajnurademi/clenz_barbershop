@@ -1,10 +1,10 @@
-/*  */// Produktdaten: Die verlinkten Bilder koennen hier zentral gepflegt werden.
+/* Produktdaten: Die verlinkten Bilder können hier zentral gepflegt werden. */
 const products = [
   {
     id: "clenz-surface",
     title: "Clenz Surface",
-    short: "Fuer saubere Arbeitsflaechen",
-    description: "Fuer saubere Arbeitsflaechen.",
+    short: "Für saubere Arbeitsflächen",
+    description: "Für saubere Arbeitsflächen.",
     price: "29,90 €",
     buyUrl: "https://www.heroshygiene.ch/",
     images: ["img/desinfektionsspray.png"],
@@ -12,8 +12,8 @@ const products = [
   {
     id: "clenz-hands",
     title: "Clenz Hands",
-    short: "Fuer zuverlaessige Handhygiene",
-    description: "Fuer zuverlaessige Handhygiene.",
+    short: "Für zuverlässige Handhygiene",
+    description: "Für zuverlässige Handhygiene.",
     price: "39,90 €",
     buyUrl: "https://www.heroshygiene.ch/",
     images: ["img/desinfektionsseife.png"],
@@ -21,8 +21,8 @@ const products = [
   {
     id: "clenz-wipes",
     title: "Clenz Wipes",
-    short: "Fuer schnelle Reinigung",
-    description: "Fuer schnelle Reinigung.",
+    short: "Für schnelle Reinigung",
+    description: "Für schnelle Reinigung.",
     price: "34,90 €",
     buyUrl: "https://www.heroshygiene.ch/",
     images: ["img/desinfektionstuecher.png"],
@@ -30,8 +30,8 @@ const products = [
   {
     id: "clenz-blade",
     title: "Clenz Blade",
-    short: "Fuer Pflege und Desinfektion von Werkzeugen",
-    description: "Fuer Pflege und Desinfektion von Werkzeugen.",
+    short: "Für Pflege und Desinfektion von Werkzeugen",
+    description: "Für Pflege und Desinfektion von Werkzeugen.",
     price: "32,90 €",
     buyUrl: "https://www.heroshygiene.ch/",
     images: ["img/desinfektionsspray_cllipper.png"],
@@ -105,7 +105,7 @@ function setMenuState(isOpen) {
   }
 
   menuToggle.setAttribute("aria-expanded", String(isOpen));
-  menuToggle.setAttribute("aria-label", isOpen ? "Menue schliessen" : "Menue oeffnen");
+  menuToggle.setAttribute("aria-label", isOpen ? "Menü schließen" : "Menü öffnen");
   siteNav.classList.toggle("is-open", isOpen);
 }
 
@@ -359,4 +359,3 @@ setupThemeToggle();
 setupMenuToggle();
 setupInteractions();
 setupScrollEffects();
-

@@ -1248,6 +1248,25 @@ html[data-theme="light"] .about-note {
   max-width: 32ch;
 }
 
+.footer-partner {
+  display: grid;
+  gap: 0.45rem;
+  align-items: start;
+}
+
+.footer-partner-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.footer-partner-logo {
+  height: 1.9rem;
+  width: auto;
+  opacity: 0.86;
+}
+
 .footer-column {
   display: grid;
   gap: 0.85rem;
@@ -2254,6 +2273,10 @@ html[data-theme="light"] .about-note {
 
   .footer-brand .brand-mark {
     height: 1.8rem;
+  }
+
+  .footer-partner-logo {
+    height: 1.6rem;
   }
 
   .about-points {
